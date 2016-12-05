@@ -41,7 +41,7 @@ PORT = COM10
 #For "old" Arduino Mega
 #MCU = atmega1280
 #For Sanguinololu
-MCU = atmega644p 
+MCU = atmega2560
 F_CPU = 16000000
 
 

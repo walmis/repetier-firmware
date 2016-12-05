@@ -106,7 +106,7 @@ We can connect BlueTooth to serial converter module directly to boards based on 
   c) pin 17 and 18 of AUX4 connector, then set BLUETOOTH_SERIAL to 2 (RX from BT to AUX4 p18, TX from BT to AUX4 p17)
   Comment out or set the BLUETOOTH_SERIAL to 0 or -1 to disable this feature.
 */
-#define BLUETOOTH_SERIAL   1                      // Port number (1..3) - For RUMBA use 3
+#define BLUETOOTH_SERIAL   -1                      // Port number (1..3) - For RUMBA use 3
 #define BLUETOOTH_BAUD     115200                 // communication speed
 
 // Uncomment the following line if you are using Arduino compatible firmware made for Arduino version earlier then 1.0
@@ -115,7 +115,7 @@ We can connect BlueTooth to serial converter module directly to boards based on 
 
 /* Define the type of axis movements needed for your printer. The typical case
 is a full cartesian system where x, y and z moves are handled by separate motors.
-
+c
 0 = full cartesian system, xyz have separate motors.
 1 = z axis + xy H-gantry (x_motor = x+y, y_motor = x-y)
 2 = z axis + xy H-gantry (x_motor = x+y, y_motor = y-x)
@@ -259,7 +259,7 @@ controlled by settings in extruder 0 definition. */
 // 100 is AD595
 // 101 is MAX6675
 // 102 is MAX31855
-#define EXT0_TEMPSENSOR_TYPE 1
+#define EXT0_TEMPSENSOR_TYPE 97
 // Analog input pin for reading temperatures or pin enabling SS for MAX6675
 #define EXT0_TEMPSENSOR_PIN TEMP_0_PIN
 // Which pin enables the heater
@@ -351,7 +351,7 @@ The codes are only executed for multiple extruder when changing the extruder. */
 #define EXT0_SELECT_COMMANDS "M117 Extruder 1"
 #define EXT0_DESELECT_COMMANDS ""
 /** The extruder cooler is a fan to cool the extruder when it is heating. If you turn the extruder on, the fan goes on. */
-#define EXT0_EXTRUDER_COOLER_PIN -1
+#define EXT0_EXTRUDER_COOLER_PIN 40
 /** PWM speed for the cooler fan. 0=off 255=full speed */
 #define EXT0_EXTRUDER_COOLER_SPEED 255
 /** Time in ms between a heater action and test of success. Must be more then time between turning heater on and first temp. rise! 
@@ -487,7 +487,7 @@ M140 command, after a given temperature is reached. */
 #define RETRACT_DURING_HEATUP 1
 
 /** Allow retraction with G10/G11 removing requirement for retraction setting in slicer. Also allows filament change if lcd is configured. */
-#define FEATURE_RETRACTION 1
+#define FEATURE_RETRACTION 0
 /** auto-retract converts pure extrusion moves into retractions. Beware that
  simple extrusion e.g. over Repetier-Host will then not work! */
 #define AUTORETRACT_ENABLED 0
@@ -567,7 +567,7 @@ If your EXT0_PID_MAX is low, you should prefer the second method.
 #define SCALE_PID_TO_MAX 0
 
 
-#define HEATER_PWM_SPEED 1 // How fast ist pwm signal 0 = 15.25Hz, 1 = 30.51Hz, 2 = 61.03Hz, 3 = 122.06Hz
+#define HEATER_PWM_SPEED 0 // How fast ist pwm signal 0 = 15.25Hz, 1 = 30.51Hz, 2 = 61.03Hz, 3 = 122.06Hz
 
 /** Temperature range for target temperature to hold in M109 command. 5 means +/-5 degC
 
@@ -627,7 +627,7 @@ The capacitor is for reducing noise from long thermistor cable. If you don't hav
 
 If you need the generic table, uncomment the following define.
 */
-//#define USE_GENERIC_THERMISTORTABLE_1
+#define USE_GENERIC_THERMISTORTABLE_1
 
 /* Some examples for different thermistors:
 
@@ -647,7 +647,7 @@ Honeywell 100K Thermistor (135-104LAG-J01)  : R0 = 100000  T0 = 25  Beta = 3974
 You can use the beta from the datasheet or compute it yourself.
 See http://reprap.org/wiki/MeasuringThermistorBeta for more details.
 */
-#define GENERIC_THERM1_BETA 4036
+#define GENERIC_THERM1_BETA 4300
 /** Start temperature for generated thermistor table */
 #define GENERIC_THERM1_MIN_TEMP -20
 /** End Temperature for generated thermistor table */
@@ -697,7 +697,7 @@ Value is used for all generic tables created. */
 
 // Select type of your heated bed. It's the same as for EXT0_TEMPSENSOR_TYPE
 // set to 0 if you don't have a heated bed
-#define HEATED_BED_SENSOR_TYPE 1
+#define HEATED_BED_SENSOR_TYPE 14
 /** Analog pin of analog sensor to read temperature of heated bed.  */
 #define HEATED_BED_SENSOR_PIN TEMP_1_PIN
 /** \brief Pin to enable heater for bed. */
@@ -712,7 +712,7 @@ Heat manager for heated bed:
 2 = Bang Bang, limited check every HEATED_BED_SET_INTERVAL. Use this with relay-driven beds to save life time
 3 = dead time control
 */
-#define HEATED_BED_HEAT_MANAGER 1
+#define HEATED_BED_HEAT_MANAGER 3
 /** \brief The maximum value, I-gain can contribute to the output.
 The precise values may differ for different nozzle/resistor combination.
  Overridden if EEPROM activated.
@@ -810,29 +810,29 @@ PRINTER_MODE_CNC 2
 use a mechanical endstop connected with GND. Set value to false for no pull-up
 on this endstop.
 */
-#define ENDSTOP_PULLUP_X_MIN false
-#define ENDSTOP_PULLUP_Y_MIN false
-#define ENDSTOP_PULLUP_Z_MIN false
+#define ENDSTOP_PULLUP_X_MIN true
+#define ENDSTOP_PULLUP_Y_MIN true
+#define ENDSTOP_PULLUP_Z_MIN true
 #define ENDSTOP_PULLUP_X_MAX true
 #define ENDSTOP_PULLUP_Y_MAX true
-#define ENDSTOP_PULLUP_Z_MAX false
+#define ENDSTOP_PULLUP_Z_MAX true
 
 //set to true to invert the logic of the endstops
 #define ENDSTOP_X_MIN_INVERTING true
 #define ENDSTOP_Y_MIN_INVERTING true
 #define ENDSTOP_Z_MIN_INVERTING true
-#define ENDSTOP_X_MAX_INVERTING false
-#define ENDSTOP_Y_MAX_INVERTING false
+#define ENDSTOP_X_MAX_INVERTING true
+#define ENDSTOP_Y_MAX_INVERTING true
 #define ENDSTOP_Z_MAX_INVERTING true
 
 // Set the values true where you have a hardware endstop. The Pin number is taken from pins.h.
 
-#define MIN_HARDWARE_ENDSTOP_X true
-#define MIN_HARDWARE_ENDSTOP_Y true
-#define MIN_HARDWARE_ENDSTOP_Z false
-#define MAX_HARDWARE_ENDSTOP_X false
-#define MAX_HARDWARE_ENDSTOP_Y false
-#define MAX_HARDWARE_ENDSTOP_Z true
+#define MIN_HARDWARE_ENDSTOP_X false
+#define MIN_HARDWARE_ENDSTOP_Y false
+#define MIN_HARDWARE_ENDSTOP_Z true
+#define MAX_HARDWARE_ENDSTOP_X true
+#define MAX_HARDWARE_ENDSTOP_Y true
+#define MAX_HARDWARE_ENDSTOP_Z false
 
 //If your axes are only moving in one direction, make sure the endstops are connected properly.
 //If your axes move in one direction ONLY when the endstops are triggered, set ENDSTOPS_INVERTING to true here
@@ -859,39 +859,39 @@ on this endstop.
 
 // Inverting motor direction. Only in case of pure cartesian printers, this
 // is also the axis you invert!
-#define INVERT_X_DIR true
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR true
+#define INVERT_X_DIR false
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR false
 
 //// ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
-#define X_HOME_DIR -1
-#define Y_HOME_DIR -1
-#define Z_HOME_DIR 1
+#define X_HOME_DIR 1
+#define Y_HOME_DIR 1
+#define Z_HOME_DIR -1
 
 // Delta robot radius endstop
-#define max_software_endstop_r true
+#define max_software_endstop_r false
 
 //If true, axis won't move to coordinates less than zero.
-#define min_software_endstop_x false
-#define min_software_endstop_y false
-#define min_software_endstop_z false
+#define min_software_endstop_x true
+#define min_software_endstop_y true
+#define min_software_endstop_z true
 
 //If true, axis won't move to coordinates greater than the defined lengths below.
 #define max_software_endstop_x true
 #define max_software_endstop_y true
-#define max_software_endstop_z false
+#define max_software_endstop_z true
 
 // If during homing the endstop is reached, ho many mm should the printer move back for the second try
-#define ENDSTOP_X_BACK_MOVE 5
-#define ENDSTOP_Y_BACK_MOVE 5
+#define ENDSTOP_X_BACK_MOVE 8
+#define ENDSTOP_Y_BACK_MOVE 8
 #define ENDSTOP_Z_BACK_MOVE 2
 
 // For higher precision you can reduce the speed for the second test on the endstop
 // during homing operation. The homing speed is divided by the value. 1 = same speed, 2 = half speed
-#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 2
-#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 2
+#define ENDSTOP_X_RETEST_REDUCTION_FACTOR 4
+#define ENDSTOP_Y_RETEST_REDUCTION_FACTOR 4
+#define ENDSTOP_Z_RETEST_REDUCTION_FACTOR 4
 
 // When you have several endstops in one circuit you need to disable it after homing by moving a
 // small amount back. This is also the case with H-belt systems.
@@ -902,14 +902,14 @@ on this endstop.
 // You can disable endstop checking for print moves. This is needed, if you get sometimes
 // false signals from your endstops. If your endstops don't give false signals, you
 // can set it on for safety.
-#define ALWAYS_CHECK_ENDSTOPS 1
+#define ALWAYS_CHECK_ENDSTOPS 0
 
 // maximum positions in mm - only fixed numbers!
 // For delta robot Z_MAX_LENGTH is the maximum travel of the towers and should be set to the distance between the hotend
 // and the platform when the printer is at its home position.
 // If EEPROM is enabled these values will be overridden with the values in the EEPROM
-#define X_MAX_LENGTH 165
-#define Y_MAX_LENGTH 175
+#define X_MAX_LENGTH 200
+#define Y_MAX_LENGTH 200
 #define Z_MAX_LENGTH 116.820
 // Coordinates for the minimum axis. Can also be negative if you want to have the bed start at 0 and the printer can go to the left side
 // of the bed. Maximum coordinate is given by adding the above X_MAX_LENGTH values.
@@ -1072,13 +1072,13 @@ Mega. Used only for nonlinear systems like delta or tuga. */
  * first a z home to get some reference, then raise to ZHOME_HEAT_HEIGHT do xy homing and then after
  * heating to minimum ZHOME_MIN_TEMPERATURE will z home again for correct height.   
  * */
-#define HOMING_ORDER HOME_ORDER_ZXY
+#define HOMING_ORDER HOME_ORDER_XYZ
 // Used for homing order HOME_ORDER_ZXYTZ
 #define ZHOME_MIN_TEMPERATURE 0
 // needs to heat all extruders (1) or only current extruder (0)
 #define ZHOME_HEAT_ALL 1 
 // Z-height for heating extruder during homing
-#define ZHOME_HEAT_HEIGHT 20
+#define ZHOME_HEAT_HEIGHT 0
 // If your bed might bend while probing, because your sensor is the extruder tip
 // you can define a predefined x,y position so beding is always the same and
 // can be compensated. Set coordinate to 999999 to ignore positions and just
@@ -1386,7 +1386,7 @@ to recalibrate z.
 */
 #define Z_PROBE_Z_OFFSET_MODE 0
 
-#define FEATURE_Z_PROBE 1
+#define FEATURE_Z_PROBE 0
 #define Z_PROBE_PIN 63
 #define Z_PROBE_PULLUP 1
 #define Z_PROBE_ON_HIGH 1
@@ -1484,7 +1484,7 @@ motorized bed leveling */
  * DISTORTION_CORRECTION_R is the distance of last row or column from center
  */
 
-#define DISTORTION_CORRECTION         1
+#define DISTORTION_CORRECTION         0
 #define DISTORTION_CORRECTION_POINTS  5
 /* For delta printers you simply define the measured radius around origin */
 #define DISTORTION_CORRECTION_R       80
